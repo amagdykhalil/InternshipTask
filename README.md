@@ -24,6 +24,8 @@
 
 [inter-task.netlify.app](https://inter-task.netlify.app)
 
+💡 You can also run the full stack locally using [Docker Compose](#-run-with-docker-compose)
+
 ---
 
 ## 🚀 Getting Started
@@ -104,3 +106,14 @@ Run backend using the following command:
 ```
 
 ---
+
+## 🐳 Run with Docker Compose
+
+You can run the full application stack (frontend, backend, and database) using Docker Compose.
+
+### ➤ From the project root, run:
+
+```sh
+docker-compose up -d --build
+
+```

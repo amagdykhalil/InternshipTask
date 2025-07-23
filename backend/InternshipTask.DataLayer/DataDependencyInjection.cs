@@ -16,6 +16,8 @@ namespace InternshipTask.DataLayer
             });
 
             services.AddScoped<IUserRepository, UserRepository>();
+
+
             return services;
         }
     }

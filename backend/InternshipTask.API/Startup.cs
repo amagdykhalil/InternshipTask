@@ -33,7 +33,6 @@ namespace InternshipTask.API
         public void Configure(WebApplication app)
         {
 
-
             app.UseForwardedHeaders();
 
             app.UseExceptionHandler();

@@ -1,0 +1,41 @@
+networks:
+  task-network:
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      SA_PASSWORD: "sa@Ah123456!"
+      ACCEPT_EULA: "Y"
+    ports:
+      - "1433:1433"
+    volumes:
+      - sqlserverdata:/var/opt/mssql
+    networks:
+      - task-network
+  backend:
+    build:
+      context: ./backend
+      args:
+        CONNECTION_STRING: "Server=sqlserver;Database=InternshipTaskDB;User Id=sa;Password=sa@Ah123456!;Encrypt=False;"
+        ALLOWED_ORIGINS__0: "http://localhost:3000"
+    depends_on:
+      - sqlserver
+    ports:
+      - "8080:8080"
+
+    networks:
+      - task-network
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        APP_API_URL: "http://localhost:8080/api"
+    depends_on:
+      - backend
+    ports:
+      - "3000:3000"
+    networks:
+      - task-network
+
+volumes:
+  sqlserverdata:
